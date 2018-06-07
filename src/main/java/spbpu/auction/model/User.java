@@ -20,7 +20,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
     private Role role;
 
     @Column(name = "first_name")
@@ -30,5 +31,5 @@ public class User {
     private String secondName;
 
     @Column(name = "rating")
-    private int rating;
+    private int rating = 0;
 }

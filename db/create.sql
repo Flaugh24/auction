@@ -54,19 +54,19 @@ CREATE UNIQUE INDEX lot_category_name_unique
   ON lot_category (upper(name));
 
 CREATE TABLE lot (
-  id               SERIAL,
-  name             VARCHAR(40)      NOT NULL,
-  description      VARCHAR(200)     NOT NULL,
-  price            DOUBLE PRECISION NOT NULL CHECK (price >= 0),
-  start_date       TIMESTAMP        NOT NULL DEFAULT current_timestamp,
-  finish_date      TIMESTAMP        NOT NULL,
-  category_id      INT              NOT NULL,
-  seller_id        INT              NOT NULL,
-  last_customer_id INT,
-  status           BOOLEAN,
+  id          SERIAL,
+  name        VARCHAR(40)      NOT NULL,
+  description VARCHAR(200)     NOT NULL,
+  bid         DOUBLE PRECISION NOT NULL CHECK (bid >= 0),
+  start_date  TIMESTAMP        NOT NULL DEFAULT current_timestamp,
+  finish_date TIMESTAMP        NOT NULL,
+  category_id INT              NOT NULL,
+  seller_id   INT              NOT NULL,
+  buyer_id    INT,
+  status      BOOLEAN,
   PRIMARY KEY (id),
   FOREIGN KEY (seller_id) REFERENCES users (id),
-  FOREIGN KEY (last_customer_id) REFERENCES users (id)
+  FOREIGN KEY (buyer_id) REFERENCES users (id)
 );
 
 CREATE TABLE tread (
@@ -80,13 +80,13 @@ CREATE TABLE tread (
 );
 
 CREATE TABLE letter (
-  id              SERIAL,
-  previous_letter INT,
-  from_id         INT NOT NULL,
-  to_id           INT NOT NULL,
-  content         VARCHAR(500),
+  id                 SERIAL,
+  previous_letter_id INT,
+  from_id            INT NOT NULL,
+  to_id              INT NOT NULL,
+  content            VARCHAR(500),
   PRIMARY KEY (id),
-  FOREIGN KEY (previous_letter) REFERENCES letter (id),
+  FOREIGN KEY (previous_letter_id) REFERENCES letter (id),
   FOREIGN KEY (from_id) REFERENCES users (id),
   FOREIGN KEY (to_id) REFERENCES users (id)
 );
