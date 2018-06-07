@@ -66,7 +66,8 @@ CREATE TABLE lot (
   status      BOOLEAN,
   PRIMARY KEY (id),
   FOREIGN KEY (seller_id) REFERENCES users (id),
-  FOREIGN KEY (buyer_id) REFERENCES users (id)
+  FOREIGN KEY (buyer_id) REFERENCES users (id),
+  FOREIGN KEY (category_id) REFERENCES lot_category (id)
 );
 
 CREATE TABLE tread (
