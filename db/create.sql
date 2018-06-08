@@ -3,6 +3,8 @@ CREATE SCHEMA public;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
+CREATE SEQUENCE hibernate_sequence; /*todo DELETE*/
+
 CREATE TABLE permission (
   id   SERIAL,
   name VARCHAR(20) NOT NULL,
@@ -70,7 +72,7 @@ CREATE TABLE lot (
   FOREIGN KEY (category_id) REFERENCES lot_category (id)
 );
 
-CREATE TABLE tread (
+CREATE TABLE trade (
   id               SERIAL,
   lot_id           INT       NOT NULL UNIQUE,
   administrator_id INT       NOT NULL,

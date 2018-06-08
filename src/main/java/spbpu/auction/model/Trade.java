@@ -8,15 +8,15 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "trade")
-public class Tread {
+public class Trade {
 
     @Id
-    @Column(name = "trade")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "lot")
+    @JoinColumn(name = "lot_id")
     private Lot lot;
 
     @ManyToOne(fetch = FetchType.LAZY)
